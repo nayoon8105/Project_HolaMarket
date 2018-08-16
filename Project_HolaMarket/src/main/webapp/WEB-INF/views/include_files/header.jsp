@@ -102,8 +102,20 @@
 </div>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.js"></script>
 <script>
+	// 카테고리 창 열린 여부
+	var isOpen=true; 
+	
+	// 카테고리 창 클릭 시
    $("#catBtn").click(function(){
-      $(".category").slideToggle();
+	   if(isOpen){ // show 상태이면 hide
+		   $(".category").show();
+		   $("#catBtn-icon").removeClass("glyphicon-menu-up").addClass("glyphicon-menu-down");
+		   isOpen=false;
+	   } else{ // hide 상태면 show
+		   $(".category").hide();
+	   		$("#catBtn-icon").removeClass("glyphicon-menu-down").addClass("glyphicon-menu-up");
+		   isOpen=true;
+	   }
    });
    
    // 판매하기 버튼 클릭
