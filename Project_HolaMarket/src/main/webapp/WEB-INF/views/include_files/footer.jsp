@@ -6,8 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>footer.jsp</title>
-<link rel="stylesheet" href="resources/css/bootstrap.css" />
-<link rel="stylesheet" href="resources/css/footer.css" />
 </head>
 <body>
 <div class="container">
@@ -24,8 +22,8 @@
 				</div>
 				<div class="ft_right col-xs-3 padding_zero">
 					<ul class="padding_zero">
-						<li><img src="resources/images/img_footer_googleplay.png"/></li>
-						<li style="border-right: 1px solid #ebebeb;"><img src="resources/images/img_footer_appstore.png"/></li>
+						<li><img src="${pageContext.request.contextPath}/resources/images/img_footer_googleplay.png"/></li>
+						<li style="border-right: 1px solid #ebebeb;"><img src="${pageContext.request.contextPath}/resources/images/img_footer_appstore.png"/></li>
 					</ul>
 				</div>
 			</div>
