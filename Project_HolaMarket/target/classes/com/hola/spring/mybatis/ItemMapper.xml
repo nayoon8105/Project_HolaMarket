@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="item">
+	<sql id="itemColumn">
+		num, img, title, content, category, lowcategory, address, TO_CHAR(regdate,'YYYY.MM.DD AM HH:MI') AS regdate
+	</sql>
+	<insert id="insert" parameterType="itemDto">
+		INSERT INTO item
+		(num, img, title, content, category, lowcategory, address, regdate)
+		VALUES(item_seq.NEXTVAL, #{img}, #{title}, #{content}, #{category}, #{lowcategory}, #{address}, SYSDATE)
+	</insert>
+	<select id="getData" parameterType="int" resultType="itemDto">
+		SELECT <include refid="itemColumn"/>
+		FROM item
+		WHERE num=#{num}
+	</select>
+	<select id="getList" resultType="itemDto">
+		SELECT <include refid="itemColumn"/>
+		FROM item
+	</select>
+</mapper>

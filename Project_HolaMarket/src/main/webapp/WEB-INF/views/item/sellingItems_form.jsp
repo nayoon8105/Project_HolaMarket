@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>product/sellingItems_form.jsp</title>
-<link rel="stylesheet" href="resources/css/bootstrap.css" />
 <jsp:include page="../include_files/loading.jsp"/>
 </head>
 <body>
@@ -20,21 +19,26 @@
 			</div>
 		</div>
 	<div class="row selling_info_div">
-		<div class="row">
-			<div class="col-xs-8 col-xs-offset-2 selling_upload">
-				<c:forEach begin="1" end="8">
-					<div class="col-xs-3 up_img_box">
-						<img src="${pageContext.request.contextPath}/resources/images/ico_itemsubmit_photo.png"/>
-					</div>
-				</c:forEach>	
-				<div class="up_img_label"></div>	
-			</div>
-		</div>
-		<div class="row">
+		
 			
 			<!-- 판매 정보입력 Form. Action name은 product/selling.do -->
-				<form action="product/selling.do" id="sellingInfo" method="get" class="form-horizontal">
+			<form action="product/selling.do" id="sellingInfo" method="post" class="form-horizontal" enctype="multipart/form-data">
 				<div class="col-xs-8 col-xs-offset-2 selling_form">
+					<!-- 다중 이미지 파일 -->
+					<div class="row">
+						<div class="selling_upload">
+							<input type="file" name="file" id="file" multiple/>
+							<c:forEach begin="1" end="8">
+								<div class="col-xs-3 up_img_box">
+									<img src="${pageContext.request.contextPath}/resources/images/ico_itemsubmit_photo.png"/>
+								</div>
+							</c:forEach>	
+							<div class="up_img_label"></div>
+							<!-- 칸 띄우기 위한 p 요소 -> visiblity:none -->	
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>	
+						</div>
+					</div>
+					
 					<!-- 제목 -->
 					<div class="row" id="title_box">		
 						<div class="col-xs-3">
@@ -107,10 +111,52 @@
 				</form>
 		</div>	
 	</div>
+	<div class="testarea">
+		<img src=""/>
 	</div>
-	
 </div>
+
 <!-- footer -->
 <jsp:include page="../include_files/footer.jsp"/>
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.js"></script>
+<script>
+	
+	$(document).ready(
+	    function() {
+	        // 태그에 onchange를 부여한다.
+	        $('#file').change(function() {
+	            addPreview($(this)); // preview form 추가하기
+		});
+	});
+	 
+	// 사진을 보여줄 div 리스트
+	var prevList=$(".selling_upload img");
+	// 사진 List 인덱스
+	var prevIdx=0;
+	
+    // image preview 기능 구현
+    function addPreview(input) {  // input = file object[]
+        if (input[0].files) {
+            //파일 선택이 여러개 였을시 대응
+            console.log("file의 length : "+input[0].files.length);
+            for (var fileIndex = 0 ; fileIndex < input[0].files.length ; fileIndex++) {
+                var file = input[0].files[fileIndex];
+                var reader = new FileReader();
+ 
+                reader.onload = function (img) {
+                    //div id="preview" 내에 동적코드추가.
+                    //이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
+                    console.log(img.target.result);
+                    console.log("index : "+fileIndex);
+                    $(".testarea>img").src="${pageContext.request.contextPath}/resources/images/img_itemsubmit_title.png";
+                   // $(prevList[prevIdx]).src=img.target.result;
+                };   
+                reader.readAsDataURL(file);
+                prevIdx++;
+            }
+        } else alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
+    }
+		 
+</script>
 </body>
 </html>

@@ -231,7 +231,7 @@
    
    // 판매하기 버튼 클릭
    $("#sellingBtn").click(function(){
-	   location.href="product/sellingItems_form.do";
+	   location.href="item/sellingItems_form.do";
    })
 </script>
 
