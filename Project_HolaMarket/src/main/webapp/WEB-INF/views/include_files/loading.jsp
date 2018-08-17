@@ -3,3 +3,4 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nayoonCss.css" />

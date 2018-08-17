@@ -1,40 +1,150 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+</head>
+<style>
+ .cat_area{
+			
+			height: 130px;
+			/*background-color: pink;*/
+		}
+		.area{
+			height: 50px;
+			
+		}
+
+		#logo_area .logo #main_img{
+			height: 130px;
+			width:auto;
+		}
+		#search_box {
+		    width: 500px;
+		    box-sizing: border-box;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    font-size: 16px;
+		    background-color: white;
+		    background-position: 10px 10px; 
+		    background-repeat: no-repeat;
+		    padding: 12px 20px 12px 40px;
+		    -webkit-transition: width 0.4s ease-in-out;
+		    transition: width 0.4s ease-in-out;
+		}
+		#search_box:focus {
+		    width: 90%;
+	
+		}	
+		#search_form_wrap {
+			margin-top: 40px;
+		}
+		#users_button_wrap{
+			margin-top: 50px;
+		}
+
+		#catBtn{
+			cursor: pointer;
+			 height:50px; 
+      		font-size: 21px;
+      		color: #058BF4;
+		}	
+		.category{
+	      background-color: white;
+	      border: 1px solid #ebebeb; 
+	      position: absolute;
+	      display: none;
+	   }
+	   .category ul{
+	      list-style: none;
+	      padding: 0;
+	   }
+	   .category ul li{
+	      padding: 10px 0;
+	   }
+	   .category > div{
+	      border-right: 1px solid #ebebeb; 
+	   }
+
+	   .navbar{
+			width: auto;
+			height: 100px;
+			float: right;
+			padding-left: 0px;
+			padding-right: 0px;
+		}
+		.navbar_menu li
+		{
+			display: inline-block;
+		}
+		.navbar_menu li a
+		{
+			display: block;
+			color: #1e1e27;
+			font-size: 14px;
+			font-weight: 500;
+			text-transform: uppercase;
+			padding: 20px;
+			-webkit-transition: color 0.3s ease;
+			-moz-transition: color 0.3s ease;
+			-ms-transition: color 0.3s ease;
+			-o-transition: color 0.3s ease;
+			transition: color 0.3s ease;
+		}
+		.navbar_menu li a:hover
+		{
+			color: #b5aec4;
+		}
+</style>
+<body>
 <div class="container">
-   <div id="header_row1" class="row">
-      <div class="col-xs-2"><img id="logoimg" src="${pageContext.request.contextPath }/resources/images/hola_logo.png" alt="로고" /></div>
-      <div class="col-xs-8 users_btn">
-          <input id="serch_box" type="text" name="search" placeholder="Search..">
-      </div>
-      
-   
-      <div class="col-xs-1 users_btn" ><button class="btn btn-default ">로그인</button></div>
-      <div class="col-xs-1 users_btn"><button class="btn btn-default ">회원가입</button></div>
-   </div>
-</div>
-<div class="row2 line_1" ></div>
-<div class="container">
-   <div id="header_row3" class="row">
-      <div class="col-xs-3" style="border-left:1px solid #D3D3D3; border-right:1px solid #D3D3D3;">
-         <div id="catBtn" style="padding-top: 5px;"   >
-             <strong>카테고리</strong> <span id="catBtn-icon" style="margin-left: 70px;" class="glyphicon glyphicon-menu-down"></span>
+  <div class="row">
+  	<div id="logo_area" class="cat_area col-xs-3">
+  		<a href="#" class="logo">
+  			<img id="main_img" src="${pageContext.request.contextPath }/resources/images/logo01.png" alt="메인화면상단로고">
+  		</a>
+  	</div>
+  	<div id="search_area" class="cat_area col-xs-7">
+  		<div id="search_form_wrap">
+			<form action="post">
+				<input  id="search_box" class="src_input" type="text" placeholder="search..">
+				<button class="src_btn btn-lg" type="submit">
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+			</form>
+		</div>	
+  	</div>
+  	<div id="users_area" class="cat_area col-xs-2">
+  		<div id="users_button_wrap">
+  		<button class="btn btn-default">로그인</button>
+  		<button class="btn btn-default" style="margin-left:2px;">회원가입</button>
+  		</div>
+  	</div>
+  	<div class="row">
+  		<div class="col-xs-3">
+         <div id="catBtn" style="padding-top: 10px;border:1px solid #D3D3D3;" >
+             <strong style="margin-left: 12px;"> 카테고리</strong> <span id="catBtn-icon" style="margin-left: 120px;" class="glyphicon glyphicon-menu-down"></span>
               </div>
-      </div>
-      <div class="col-xs-1"></div>
-      <div class="nav_list col-xs-5" >
-         <ul class="nav nav-tabs">
-            <li><a href="">올라마켓 굿즈</a></li>
-            <li><a href="">커뮤니티</a></li>
-            <li><a href="">이벤트 / 뉴스</a></li>
-            <li><a href="">헬프센터</a></li>
-         </ul>
-      </div>
-      
-      <div class="col-xs-3 ">
-         <img src="${pageContext.request.contextPath }/resources/images/sale_btn.png" style=" height:50px; width: auto; margin-left:100px;" alt="판매하기" id="sellingBtn"/>
-      </div>
-   </div>
+      	</div>
+      	
+  		<div id="nav_area" class="col-xs-6 area">
+  			<nav class="navbar" style="margin-left: 80px;">
+  				<ul class="navbar_menu" id="main-menu">
+					<li><a href="#">올라마켓 굿즈</a></li>
+					<li><a href="#">커뮤니티</a></li>
+					<li><a href="#">이벤트/뉴스</a></li>
+					<li><a href="#">헬프센터</a></li>
+				</ul>
+  			</nav>
+  		</div>
+  		<div id="sale_btn_area" class="col-xs-2 area">
+  			<img src="${pageContext.request.contextPath }/resources/images/sale_btn.png" style=" height:50px; width: auto; margin-left:100px;" alt="판매하기" id="sellingBtn"/>
+  		</div>
+  	</div>
+
+
+
+
+  </div>
 </div>
 <div class="container">
    <div class="row category">
@@ -100,6 +210,7 @@
          </div>
    </div>  
 </div>
+
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.js"></script>
 <script>
 	// 카테고리 창 열린 여부
@@ -123,3 +234,4 @@
 	   location.href="product/sellingItems_form.do";
    })
 </script>
+
